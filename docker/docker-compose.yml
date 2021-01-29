@@ -1,0 +1,32 @@
+version: '3.2'
+
+networks:
+  backend:
+    driver: bridge
+
+services:
+  database:
+    image: 'mongo'
+    container_name: 'mongo-container'
+    environment:
+      - MONGO_INITDB_DATABASE=mongo_db
+      - MONGO_INITDB_USERNAME=mongo_user
+      - MONGO_INITDB_PASSWORD=mongo_pass
+    volumes:
+    - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    - ./mongo-volume:/data/db
+    ports:
+    - 27017:27017
+    networks:
+      - backend
+
+  mongoku:
+    image: huggingface/mongoku
+    restart: always
+    ports:
+      - 3100:3100
+    environment:
+      MONGOKU_DEFAULT_HOST: mongodb://mongo_user:mongo_pass@localhost:27017?authSource=admin
+      MONGOKU_SERVER_PORT: 3100
+    networks:
+      - backend
