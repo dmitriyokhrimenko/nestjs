@@ -29,15 +29,31 @@ services:
     networks:
       - webnet
     environment:
-      POSTGRES_PASSWORD: qwerty
-      POSTGRES_USER: dimas
-      POSTGRES_DB: dimas
+      POSTGRES_PASSWORD: nestjsPass
+      POSTGRES_USER: nestjsUser
+      POSTGRES_DB: nestjsDb
       PG_DATA: /var/lib/postgresql/data
     ports:
       - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    networks:
+      - webnet
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dm.okhrimenko@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: qwerty
+    volumes:
+      - pgadmin:/root/.pgadmin
+    ports:
+      - "5050:80"
 networks:
   webnet:
 volumes:
   pgdata:
+  pgadmin:
