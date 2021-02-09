@@ -1,11 +1,15 @@
 import { Get, Controller, Request, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { UsersService } from './users/users.service';
 
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {
+  constructor(
+    private readonly appService: AppService,
+    private readonly userService: UsersService,
+  ) {
     console.log('qwerty');
   }
 
