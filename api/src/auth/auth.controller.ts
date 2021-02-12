@@ -1,8 +1,8 @@
 import { Get, Controller } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
+import { UserService } from '../users/user.service';
 @Controller()
-export class UserController {
-  constructor(private readonly userService: UsersService) {
+export class AuthController {
+  constructor(private readonly userService: UserService) {
     console.log('qwerty');
   }
 

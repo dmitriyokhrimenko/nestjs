@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User as UserEntity } from './user.entity';
+import { Users as UserEntity } from './users.entity';
 
 export type User = any;
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly usersRepository: Repository<UserEntity>,
@@ -21,6 +21,7 @@ export class UsersService {
   }
 
   findUser(username, password): any {
+    console.log(username, password)
     return this.usersRepository.find({
       where: {
         login: username,

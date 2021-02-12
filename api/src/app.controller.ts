@@ -1,6 +1,6 @@
 import { Get, Controller, Request, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { UsersService } from './users/users.service';
+import { UserService } from './users/user.service';
 
 import { AppService } from './app.service';
 
@@ -8,9 +8,9 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    private readonly userService: UsersService,
+    private readonly userService: UserService,
   ) {
-    console.log('qwerty');
+    console.log('app controller');
   }
 
   @UseGuards(AuthGuard('local'))
