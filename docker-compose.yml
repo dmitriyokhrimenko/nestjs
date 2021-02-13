@@ -17,7 +17,7 @@ services:
     container_name: api
     build:
       context: .
-      dockerfile: ./DockerfileApi
+      dockerfile: ./api/DockerfileApi
       target: development
     volumes:
       - ./api:/usr/src/app

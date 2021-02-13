@@ -1,9 +1,10 @@
 
 export const Routes = {
 
+    Admin: {path: '/admin'},
     Products: {path: '/admin/products'},
-
-
+    CreateProduct: {path: '/admin/products/create'},
+    StoreProduct: {path: '/admin/product/store'},
 
 
 
