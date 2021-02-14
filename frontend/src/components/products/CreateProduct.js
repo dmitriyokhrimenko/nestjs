@@ -9,12 +9,27 @@ import {Breadcrumbs} from "../general/Breadcrumbs";
 export default (props = {}) => {
 	let apiUrl = config.apiUrl;
 	const [users, setUsers] = useState([]);
-	useEffect(() => {
-		API.get('/users')
+	// useEffect(() => {
+	// 	API.get('/users')
+	// 		.then(res => {
+	// 			setUsers(res.data)
+	// 		})
+	// }, []);
+
+	const handleChange = (data) => {
+		console.log(data.currentTarget)
+	};
+
+
+	const storeProduct = () => {
+
+		API.post(Routes.StoreProduct.path, {})
 			.then(res => {
 				setUsers(res.data)
-			})
-	}, []);
+			});
+		console.log(6436346)
+	};
+
 	return (
 		<>
 			<div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
@@ -29,7 +44,7 @@ export default (props = {}) => {
 					</div>
 					<div className={'row'}>
 						<div className={'col-md-9'}>
-							<form action={API.post(Routes.StoreProduct.path)}>
+							<form action={API.post(Routes.StoreProduct.path)} onChange={handleChange}>
 								<div className="form-group row">
 									<label className="col-sm-2 col-form-label">Product name</label>
 									<div className="col-sm-10">
@@ -77,7 +92,11 @@ export default (props = {}) => {
 										</div>
 									</div>
 								</div>
-								<button type="submit" className="btn btn-primary">Submit</button>
+								<div className="form-group row">
+									<div className={'col-md-2 offset-11'}>
+										<button type="button" className="btn btn-primary" onClick={storeProduct}>Submit</button>
+									</div>
+								</div>
 							</form>
 						</div>
 					</div>
