@@ -27,11 +27,11 @@ export default (props = {}) => {
 			<div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
 				<Container fluid className='p-0'>
 					{/*<Breadcrumbs bcrumbItems={bcrumbItems}/>*/}
-					<Row>
-						<Col md={{offset: 10, span: 2}}>
+					<div className={'row'}>
+						<div className={'d-grid gap-2 d-md-flex justify-content-md-end'}>
 							<Link className="btn btn-success" to={Routes.CreateProduct.path}>Create product</Link>
-						</Col>
-					</Row>
+						</div>
+					</div>
 					<Row>
 						{users.length ?
 							<Table>

@@ -3,15 +3,14 @@ import { ProductService } from './product.service';
 
 @Controller()
 export class ProductController {
-	constructor(private readonly productService: ProductService) {
-		console.log('Product controller construct');
-	}
+  constructor(private readonly productService: ProductService) {
+    console.log('Product controller construct');
+  }
 
-	@Post('/product/store')
-	store() {
+  @Post('/admin/product/store')
+  store() {
+    console.log('trying to store a product');
 
-		console.log('trying to store a product');
-
-		return this.productService.findAll();
-	}
+    return this.productService.findAll();
+  }
 }

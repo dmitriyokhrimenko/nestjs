@@ -8,6 +8,7 @@ import {Breadcrumbs} from "../general/Breadcrumbs";
 
 export default (props = {}) => {
 	let apiUrl = config.apiUrl;
+	const [formData, setFormData] = useState({});
 	const [users, setUsers] = useState([]);
 	// useEffect(() => {
 	// 	API.get('/users')
@@ -17,7 +18,13 @@ export default (props = {}) => {
 	// }, []);
 
 	const handleChange = (data) => {
-		console.log(data.currentTarget)
+		const inputs = data.currentTarget.getElementsByTagName('input');
+		let formVals = {};
+
+		for (let i = 0; i < inputs.length; i++) {
+			formVals[inputs[i].name] = inputs[i].value
+		}
+		setFormData(formVals);
 	};
 
 
@@ -27,7 +34,7 @@ export default (props = {}) => {
 			.then(res => {
 				setUsers(res.data)
 			});
-		console.log(6436346)
+		console.log(formData)
 	};
 
 	return (
@@ -44,11 +51,11 @@ export default (props = {}) => {
 					</div>
 					<div className={'row'}>
 						<div className={'col-md-9'}>
-							<form action={API.post(Routes.StoreProduct.path)} onChange={handleChange}>
+							<form action={Routes.StoreProduct.path} onChange={handleChange}>
 								<div className="form-group row">
 									<label className="col-sm-2 col-form-label">Product name</label>
 									<div className="col-sm-10">
-										<input type="productName" className="form-control" placeholder="Product name"/>
+										<input type="text" name="productName" className="form-control" placeholder="Product name"/>
 									</div>
 								</div>
 								<div className="form-group row">
@@ -85,9 +92,9 @@ export default (props = {}) => {
 									<div className="col-sm-2">Checkbox</div>
 									<div className="col-sm-10">
 										<div className="form-check">
-											<input className="form-check-input" type="checkbox" id="gridCheck1"/>
-												<label className="form-check-label" htmlFor="gridCheck1">
-													Example checkbox
+											<input className="form-check-input" type="checkbox" id="active" name={"active"}/>
+												<label className="form-check-label" htmlFor="active">
+													Active
 												</label>
 										</div>
 									</div>
